@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Controller\Admin\AccountController;
 use App\Entity\User;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Repository\RepositoryFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LoginController extends AbstractController
@@ -37,6 +39,18 @@ class LoginController extends AbstractController
 
         $checkUser = $this->checkUser($userInfo);
 
+        if ($checkUser['result']) {
+            if ($checkUser['userInfo']['rollId']==1) { // Login as admin
+                return $this->redirect($this->generateUrl('admin_account'));
+            } elseif ($checkUser['userInfo']['rollId']==2) { // Login as teacher
+
+            } else { // Login as student
+
+            }
+        } else {
+
+        }
+
         return $this->render('login/index.html.twig', [
             'controller_name' => 'LoginController',
             'checkUser' => $checkUser
@@ -48,7 +62,6 @@ class LoginController extends AbstractController
      */
     private function signOut(Request $request)
     {
-        $this->checkUser($request->request);
     }
 
     private function checkUser($userInfo)
@@ -70,9 +83,24 @@ class LoginController extends AbstractController
             ];
         }
 
+        if (!$userModel->getStatus()) {
+            return [
+                'result' => false,
+                'message' => 'This account is inactive'
+            ];
+        }
+
         return [
             'result' => true,
-            'message' => 'You are sign in'
+            'message' => 'You are sign in',
+            'userInfo' => [
+                'name' => $userModel->getFirstName(),
+                'middleName' => $userModel->getMiddleName(),
+                'lastName' => $userModel->getLastName(),
+                'eMail' => $userModel->getEmail(),
+                'userName' => $userModel->getUserName(),
+                'rollId' => $userModel->getRollId()
+            ]
         ];
     }
 

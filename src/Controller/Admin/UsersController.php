@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class JournalController extends AbstractController
+class UsersController extends AbstractController
 {
     /**
-     * @Route("/journal", name="journal")
+     * @Route("/admin/users", name="admin_users")
      */
     public function index(): Response
     {
-        return $this->render('journal/index.html.twig', [
-            'controller_name' => 'JournalController',
+        return $this->render('admin/users/index.html.twig', [
+            'controller_name' => 'UsersController',
         ]);
     }
 }
