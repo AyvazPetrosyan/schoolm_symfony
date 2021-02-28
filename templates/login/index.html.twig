@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+
+        .login-form-list {
+
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Hello {{ controller_name }}! ✅</h1>
+
+        This friendly message is coming from:
+        <ul>
+            <li>Your controller at <code><a
+                            href="{{ 'C:/OpenServer/domains/schoolm-symfony/src/Controller/LoginController.php'|file_link(0) }}">src/Controller/LoginController.php</a></code>
+            </li>
+            <li>Your template at <code><a
+                            href="{{ 'C:/OpenServer/domains/schoolm-symfony/templates/login/index.html.twig'|file_link(0) }}">templates/login/index.html.twig</a></code>
+            </li>
+        </ul>
+
+        <div class="message-block">
+            <p>
+                {{ checkUser['message'] }}
+            </p>
+        </div>
+
+        <form action="{{ path('signIn') }}" method="post" >
+            <ul class="login-form-list">
+                <li><input name="userName" type="text" placeholder="User name" ></li>
+                <li><input name="password" type="password" placeholder="Password"></li>
+                <li><input name="loginSubmit" type="submit" value="Log in"></li>
+            </ul>
+        </form>
+    </div>
+{% endblock %}
