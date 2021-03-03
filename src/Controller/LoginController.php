@@ -41,6 +41,8 @@ class LoginController extends AbstractController
 
         if ($checkUser['result']) {
             if ($checkUser['userInfo']['rollId']==1) { // Login as admin
+                session_start();
+                $_SESSION['userInfo'] = $checkUser['userInfo'];
                 return $this->redirect($this->generateUrl('admin_account'));
             } elseif ($checkUser['userInfo']['rollId']==2) { // Login as teacher
 
@@ -60,8 +62,10 @@ class LoginController extends AbstractController
     /**
      * @Route("/signOut", name="signOut")
      */
-    private function signOut(Request $request)
+    public function signOut(Request $request)
     {
+        session_unset();
+        return $this->redirect($this->generateUrl('home'));
     }
 
     private function checkUser($userInfo)
