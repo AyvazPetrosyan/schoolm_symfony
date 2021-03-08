@@ -13,13 +13,6 @@ class AccountController extends AbstractController
      */
     public function index(): Response
     {
-        session_start();
-        if (isset($_SESSION['userInfo'])) {
-            $userInfo = $_SESSION['userInfo'];
-        } else {
-            return $this->redirect($this->generateUrl('home'));
-        }
-
         return $this->render('admin/account/index.html.twig', [
             'controller_name' => 'AccountController',
         ]);

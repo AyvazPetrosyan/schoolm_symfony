@@ -34,7 +34,6 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $customer = new Customer();
-
         $form = $this->createFormBuilder($customer)
             ->add('userName', TextType::class)
             ->add('email', TextType::class)
@@ -114,7 +113,7 @@ class SecurityController extends AbstractController
             ]);
         }
 
-        $this->createCustomer([
+        $customer = $this->createCustomer([
             'email' => $form['email'],
             'roles' => [3],
             'password' => $form['password']
@@ -168,7 +167,7 @@ class SecurityController extends AbstractController
         ];
     }
 
-    private function createCustomer($customerInfo)
+    private function createCustomer($customerInfo): Customer
     {
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -179,6 +178,8 @@ class SecurityController extends AbstractController
 
         $entityManager->persist($customer);
         $entityManager->flush();
+
+        return $customer;
     }
 
     private function emailValidation($email)
