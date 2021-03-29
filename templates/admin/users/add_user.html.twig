@@ -1,10 +1,101 @@
-{% extends 'admin/index.html.twig' %}
+{% extends 'admin/users/index.html.twig' %}
 
-{% block title %}Hello UsersController!{% endblock %}
+{% block title %}Add user{% endblock %}
 
-{% block body %}
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
+{% block userListBlock %}
+    <div class="user-list-block">
+        <form action="{{ path('admin_add_users') }}" method="post">
+            <table class="user-list">
+                <tr>
+                    <th class="first-name">
+                        <span>First name</span>
+                    </th>
+                    <th class="middle-name">
+                        <span>Middle name</span>
+                    </th>
+                    <th class="last-name">
+                        <span>Last name</span>
+                    </th>
+                    <th class="user-name">
+                        <span> User name </span>
+                    </th>
+                    <th class="password">
+                        <span> Password </span>
+                    </th>
+                    <th class="email">
+                        <span> Mail </span>
+                    </th>
+                    <th class="roll">
+                        <span> Roll </span>
+                    </th>
+                    <th class="status">
+                        <span> Status </span>
+                    </th>
+                    <th class="edit">
+                        <span> Edit </span>
+                    </th>
+                </tr>
+                {% for userInfo in userList %}
+                    <tr>
+                        <td class="first-name">
+                            <span>{{ userInfo['firstName'] }}</span>
+                        </td>
+                        <td class="middle-name">
+                            <span>{{ userInfo['middleName'] }}</span>
+                        </td>
+                        <td class="last-name">
+                            <span>{{ userInfo['lastName'] }}</span>
+                        </td>
+                        <td class="user-name">
+                            <span>{{ userInfo['userName'] }}</span>
+                        </td>
+                        <td class="password">
+                            <span>{{ userInfo['password'] }}</span>
+                        </td>
+                        <td class="email">
+                            <span>{{ userInfo['email'] }}</span>
+                        </td>
+                        <td class="roll">
+                            <span>{{ userInfo['roll'] }}</span>
+                        </td>
+                        <td class="status">
+                            <span>{{ userInfo['status'] }}</span>
+                        </td>
+                        <td class="edit">
+                            <span> edit </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td class="first-name">
+                        <input required="required" name="firstName" placeholder="First name">
+                    </td>
+                    <td class="middle-name">
+                        <input required="required" name="middleName" placeholder="Middle name">
+                    </td>
+                    <td class="last-name">
+                        <input required="required" name="lastName" placeholder="Last name">
+                    </td>
+                    <td class="user-name">
+                        <input required="required" name="userName" placeholder="User name">
+                    </td>
+                    <td class="password">
+                        <input required="required" name="password" placeholder="Password">
+                    </td>
+                    <td class="email">
+                        <input required="required" name="email" placeholder="email" type="email">
+                    </td>
+                    <td class="roll">
+                        <input required="required" name="rollId" placeholder="Roll id">
+                    </td>
+                    <td class="status">
+                        <input name="status" placeholder="Status" type="checkbox">
+                    </td>
+                    <td class="save">
+                        <input name="saveUser" type="submit" value="Save">
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
-
 {% endblock %}

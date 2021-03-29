@@ -12,30 +12,5 @@
             <input type="button" value="Add new user">
         </a>
     </div>
-    <div class="user-list-block">
-        <table class="user-list">
-            {% for userInfo in userList %}
-                <tr>
-                    <td class="full-name" >
-                        <span></span>
-                    </td>
-                    <td class="user-name" >
-                        <span></span>
-                    </td>
-                    <td class="email" >
-                        <span></span>
-                    </td>
-                    <td class="roll" >
-                        <span></span>
-                    </td>
-                    <td class="status" >
-                        <span></span>
-                    </td>
-                    <td class="edit" >
-                        <span></span>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-    </div>
+    {% block userListBlock %} {% endblock %}
 {% endblock %}
