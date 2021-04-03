@@ -1,27 +1,30 @@
-<style>
-    .user-list-block .user-list th {
-        border: 1px solid black;
-        text-align: center;
-        vertical-align: middle;
-        padding: 4px;
-    }
-    .user-list-block .user-list td {
-        border: 1px solid black;
-        text-align: center;
-        vertical-align: middle;
-        padding: 4px;
-    }
-</style>
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .user-list-block .user-list th {
+            border: 1px solid black;
+            text-align: center;
+            vertical-align: middle;
+            padding: 4px;
+        }
+        .user-list-block .user-list td {
+            border: 1px solid black;
+            text-align: center;
+            vertical-align: middle;
+            padding: 4px;
+        }
+
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+{% endblock %}
 
 {% block title %}Hello Account{% endblock %}
 
 {% block navigationBlock %}
-    {% include 'public/main_top_navigation.html.twig' %}
-    <ul class="sidebar-menu">
-        <li><a href="{{ path('admin_account') }}" >My account</a></li>
-        <li><a href="{{ path('admin_journal') }}" >Journal</a></li>
-        <li><a href="{{ path('admin_users') }}" >Users</a></li>
-    </ul>
+    {% include 'admin/public/main_top_navigation.html.twig' %}
 {% endblock %}
 
 {% block sideBarNavigation %} {% endblock %}
